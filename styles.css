@@ -1,0 +1,28 @@
+
+
+#main {
+    margin-left: 700px;
+    margin-top: 250px;
+    background-color: black;
+    width: 250px;
+}
+
+#top, #middle, #lower, #last {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: blue;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+button {
+    height: 70px;
+    width: 70px;
+}
+
+#zero {
+    height: 70px;
+    width: 225px;
+}
