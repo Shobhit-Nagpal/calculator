@@ -3,11 +3,17 @@
 #main {
     margin-left: 700px;
     margin-top: 250px;
-    background-color: black;
-    width: 250px;
+    width: 350px;
 }
 
-#top, #middle, #lower, #last {
+#display {
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#top, #middle, #lower, #last, #clear {
     display: flex;
     flex-wrap: wrap;
     background-color: blue;
@@ -22,7 +28,8 @@ button {
     width: 70px;
 }
 
-#zero {
-    height: 70px;
-    width: 225px;
+#clearBtn {
+    width: 200px;
+    color: white;
+    background-color: red;
 }
