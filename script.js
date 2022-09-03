@@ -1,3 +1,5 @@
+const displayValue = document.querySelector("#displayValue");
+
 function add(num1, num2) {
     let sum = num1 + num2;
     console.log(sum);
@@ -49,6 +51,7 @@ function displayOnScreen() {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
             console.log(button.id);
+            displayValue.innerHTML = button.id;
         });
     });
 }
