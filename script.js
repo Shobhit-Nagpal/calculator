@@ -51,7 +51,12 @@ function displayOnScreen() {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
             console.log(button.id);
+
             displayValue.innerHTML = button.id;
+
+            if (button.id == "clearBtn") {
+                displayValue.innerHTML = '';
+            }
         });
     });
 }
