@@ -7,19 +7,24 @@ function add(num1, num2) {
 }
 
 function subtract(num1, num2) {
-    let difference = num1 + num2;
+    let difference = num1 - num2;
     console.log(difference);
     return difference;
 }
 
 function multiply(num1, num2) {
-    let product = num1 + num2;
+    let product = num1 * num2;
     console.log(product);
     return product;
 }
 
 function divide(num1, num2) {
-    let division = num1 + num2;
+
+    if (num2 === 0) {
+        return alert("Can't divide by 0. Tf you doing?");
+    }
+    
+    let division = num1 / num2;
     console.log(division);
     return division;
 }
