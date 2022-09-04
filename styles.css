@@ -1,10 +1,12 @@
-
+body {
+    background-color: #333333;
+}
 
 #main {
     margin-left: 700px;
     margin-top: 250px;
     width: 330px;
-    border: 2px solid black;
+    border: 2px solid #f9fafb;
     background-color: #333333;
     border-radius: 10px;
 }
@@ -15,7 +17,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    color: #f9fafb;
+    background-color: #181a1b;
     height: 75px;
 }
 
@@ -39,15 +42,16 @@
 button {
     height: 70px;
     width: 70px;
-    background-color: white;
-    color: #333333;;
+    background-color: #181a1b;
+    color: #f9fafb;
 }
 
 #clearBtn {
     margin: 10px 0px;
     height: 60px;
     width: 200px;
-    color: #333333;
+    color: #f9fafb;
+    background-color: #181a1b;
     font-size: 25px;
 }
 
