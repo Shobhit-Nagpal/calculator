@@ -51,6 +51,12 @@ button {
     font-size: 25px;
 }
 
+.operant {
+    color: #f9fafb;
+    background-color: #16A3CF;
+}
 #equals {
+    color: #f9fafb;
+    font-weight: bold;
     background-color: #EE4B2B;
 }
