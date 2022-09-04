@@ -1,5 +1,5 @@
 const displayValue = document.querySelector("#displayValue");
-let num1, num2, input, operation;
+let num1, num2, input, currentOperation, prevOperation;
 let numberDisplayed = 0;
 let operands = [];
 
@@ -105,22 +105,27 @@ function displayOnScreen() {
             if (button.classList.contains("operant")) {
 
                 //do something
+                operands.push(input);
                 displayValue.innerHTML = button.id;
-                operation = button.id;
+                currentOperation = button.id;
+                operands.push(currentOperation);
+                let result = 0;
+
 
                 if (operands.length > 2) {
 
-                    let result = operate(operation, operands[0], operands[1]);
+                    result = operate(operands[1], operands[0], operands[2]);
                     displayValue.innerHTML = result;
 
                     clearOperands();
 
                     input = result;
                     console.log(operands);
+                    operands.unshift(input);
+                    operands.push(currentOperation);
 
                 }
 
-                operands.push(input);
                 console.log(operands);
                 numberDisplayed = 0;
 
@@ -130,23 +135,27 @@ function displayOnScreen() {
             if (button.id === "equals") {
 
                 operands.push(input);
+                operands.push(currentOperation);
                 let result = 0;
 
                 if (operands.length > 2) {
 
-                    result = operate(operation, operands[0], operands[1]);
+                    result = operate(currentOperation, operands[0], operands[2]);
                     displayValue.innerHTML = result;
 
                     clearOperands();
 
                     input = result;
                     operands.unshift(input);
+                    operands.push(currentOperation);
                     return;
 
                 }
 
-                result = operate(operation, operands[0], operands[1]);
+                result = operate(operands[1], operands[0], operands[2]);
                 displayValue.innerHTML = result;
+
+                console.log(operands);
 
                 clearOperands();
 
