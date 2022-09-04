@@ -64,9 +64,8 @@ function clearAll() {
 }
 
 function clearOperands() {
-    for (let i = 0 ; i < operands.length ; i++) {
-        operands.shift();
-    }
+    
+    operands.length = 0;
 }
 
 function displayOnScreen() {
