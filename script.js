@@ -105,11 +105,43 @@ function displayOnScreen() {
             if (button.classList.contains("operant")) {
 
                 //do something
-                operands.push(input);
-                displayValue.innerHTML = button.id;
-                currentOperation = button.id;
-                operands.push(currentOperation);
+
+                console.log(operands);
+
+
+                if (operands.length % 2 === 0) {
+                    
+
+                    operands.push(input);
+                    currentOperation = button.id;
+                    operands.push(currentOperation);
+
+                    console.log(operands);
+                    
+
+                    displayValue.innerHTML = button.id;
+
+                    if (typeof operands[0] !== 'number') {
+                        clearAll();
+                        clearOperands();
+                        displayValue.textContent = 0;
+                    }
+
+                }
+                else {
+                    currentOperation = button.id;
+                    operands.push(currentOperation);
+                    operands.push(input);
+                    displayValue.innerHTML = button.id;
+                    console.log(operands);
+
+                }
+                
                 let result = 0;
+
+                /*if (operands.length === 4) {
+                    operands.length = 2;
+                } */
 
 
                 if (operands.length > 2) {
@@ -134,11 +166,28 @@ function displayOnScreen() {
 
             if (button.id === "equals") {
 
+                if (operands.length === 0) {
+                    return;
+                }
+
                 operands.push(input);
-                operands.push(currentOperation);
+                //operands.push(currentOperation);
+                console.log("ENTERING EQUALS " + operands);
                 let result = 0;
 
-                if (operands.length > 2) {
+                result = operate(operands[1], operands[0], operands[2]);
+                displayValue.innerHTML = result;
+
+                input = result;
+                operands.unshift(input);
+
+                console.log("OPERANDS BEFORE ENTERING EQUALS ID" + operands);
+
+                if (operands.length === 2) {
+                    operands.length = 1;
+                }
+
+                /* if (operands.length > 2) {
 
                     result = operate(currentOperation, operands[0], operands[2]);
                     displayValue.innerHTML = result;
@@ -148,14 +197,12 @@ function displayOnScreen() {
                     input = result;
                     operands.unshift(input);
                     operands.push(currentOperation);
+                    console.log("OPERANDS IN EQUALS IF" + operands);
                     return;
 
-                }
+                } */
 
-                result = operate(operands[1], operands[0], operands[2]);
-                displayValue.innerHTML = result;
-
-                console.log(operands);
+                console.log("AFTER EXITING EQUALS IF " + operands);
 
                 clearOperands();
 
