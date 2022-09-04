@@ -1,4 +1,7 @@
 const displayValue = document.querySelector("#displayValue");
+let num1, num2, input, operation;
+let numberDisplayed = 0;
+let operands = [];
 
 function add(num1, num2) {
     let sum = num1 + num2;
@@ -23,44 +26,142 @@ function divide(num1, num2) {
     if (num2 === 0) {
         return alert("Can't divide by 0. Tf you doing?");
     }
-    
+
     let division = num1 / num2;
     console.log(division);
     return division;
 }
 
-function operate(operator, num1, num2) {
+function operate(operation, num1, num2) {
 
-    switch(operator) {
+    let result;
+
+    switch(operation) {
 
         case '+':
-            add(num1, num2);
+            result = add(num1, num2);
             break;
         case '-':
-            subtract(num1, num2);
+            result = subtract(num1, num2);
             break;
         case 'x':
-            multiply(num1, num2);
+            result = multiply(num1, num2);
             break;
         case '/':
-            divide(num1, num2);
+            result = divide(num1, num2);
             break;
 
     }
 
+    return result;
+
+}
+
+function clearAll() {
+    num1 = 0;
+    num2 = 0;
+    return;
+}
+
+function clearOperands() {
+    for (let i = 0 ; i < operands.length ; i++) {
+        operands.shift();
+    }
 }
 
 function displayOnScreen() {
+
+    
     const buttons = document.querySelectorAll('button');
 
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
             console.log(button.id);
 
-            displayValue.innerHTML = button.id;
+            if (button.classList.contains("digit")) {
 
-            if (button.id == "clearBtn") {
-                displayValue.innerHTML = '';
+                if (numberDisplayed === 0) {
+                    displayValue.innerHTML = parseInt(button.id);
+                    numberDisplayed = parseInt(button.id);
+                    input = numberDisplayed;
+                    console.log("Display value: " + numberDisplayed);
+                    console.log("EXITING IF");
+                }
+                else {
+
+                    let currentNumber = parseInt(button.id);
+                    numberDisplayed = numberDisplayed*10 + currentNumber;
+                    console.log("ENTER ELSE");
+                    console.log("Current Numner: " + currentNumber);
+                    console.log("Display value: " + numberDisplayed);
+                    displayValue.innerHTML = numberDisplayed;
+                    input = numberDisplayed;
+
+                }
+            }
+            
+        
+
+
+            if (button.classList.contains("operant")) {
+
+                //do something
+                displayValue.innerHTML = button.id;
+                operation = button.id;
+
+                if (operands.length > 2) {
+
+                    let result = operate(operation, operands[0], operands[1]);
+                    displayValue.innerHTML = result;
+
+                    clearOperands();
+
+                    input = result;
+                    console.log(operands);
+
+                }
+
+                operands.push(input);
+                console.log(operands);
+                numberDisplayed = 0;
+
+
+            }
+
+            if (button.id === "equals") {
+
+                operands.push(input);
+                let result = 0;
+
+                if (operands.length > 2) {
+
+                    result = operate(operation, operands[0], operands[1]);
+                    displayValue.innerHTML = result;
+
+                    clearOperands();
+
+                    input = result;
+                    operands.push(input);
+                    return;
+
+                }
+
+                result = operate(operation, operands[0], operands[1]);
+                displayValue.innerHTML = result;
+
+                clearOperands();
+
+            }
+
+        
+
+            if (button.id === "clearBtn") {
+                clearAll();
+                displayValue.innerHTML = 0;
+                numberDisplayed = 0;
+                input = 0;
+                clearOperands();
+
             }
         });
     });
