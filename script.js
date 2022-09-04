@@ -120,7 +120,7 @@ function displayOnScreen() {
 
                 }
 
-                operands.push(input);
+                operands.unshift(input);
                 console.log(operands);
                 numberDisplayed = 0;
 
@@ -140,7 +140,7 @@ function displayOnScreen() {
                     clearOperands();
 
                     input = result;
-                    operands.push(input);
+                    operands.unshift(input);
                     return;
 
                 }

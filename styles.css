@@ -47,7 +47,10 @@ button {
     margin: 10px 0px;
     height: 60px;
     width: 200px;
-    color: #f9fafb;
-    font-size: 25px;;
+    color: #333333;
+    font-size: 25px;
+}
+
+#equals {
     background-color: #EE4B2B;
 }
