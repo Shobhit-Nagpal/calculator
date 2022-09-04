@@ -4,20 +4,20 @@
     box-sizing: border-box;
   }
   
-body {
+  body {
+    height: 100vh;
     background-color: #333333;
     display: grid;
-    place-content: center;
-}
-
-#main {
-    margin-left: 700px;
-    margin-top: 250px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #main {
     width: 330px;
     border: 2px solid #f9fafb;
     background-color: #333333;
     border-radius: 10px;
-}
+  }
 
 #display {
     border: 1px solid black;
