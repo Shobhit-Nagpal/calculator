@@ -28,8 +28,8 @@ function divide(num1, num2) {
     }
 
     let division = num1 / num2;
-    console.log(division);
-    return division;
+    console.log(division.toFixed(2));
+    return division.toFixed(2);
 }
 
 function operate(operation, num1, num2) {
