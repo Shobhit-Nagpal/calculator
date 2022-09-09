@@ -127,8 +127,16 @@ function displayOnScreen() {
                         displayValue.textContent = 0;
                     }
 
+                    input = null;
+
                 }
                 else {
+
+                    if (input == null) {
+                        alert("Invalid use.");
+                        return;
+                    }
+
                     currentOperation = button.id;
                     operands.push(currentOperation);
                     operands.push(input);
@@ -145,6 +153,14 @@ function displayOnScreen() {
 
 
                 if (operands.length > 2) {
+
+                    if (operands[2] === null) {
+                        for(let i = 0 ; i < 2 ; i++) {
+                            operands.pop();
+                        }
+                        console.log(operands);
+                        return;
+                    }
 
                     result = operate(operands[1], operands[0], operands[2]);
                     displayValue.innerHTML = result;
