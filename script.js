@@ -1,24 +1,22 @@
-const displayValue = document.querySelector("#displayValue");
+
+//Declaring global variables
 let num1, num2, input, currentOperation, prevOperation;
 let numberDisplayed = 0;
 let operands = [];
 
+const displayValue = document.querySelector("#displayValue");
+
+//Functions that perform the operations
 function add(num1, num2) {
-    let sum = num1 + num2;
-    console.log(sum);
-    return sum;
+    return num1 + num2;
 }
 
 function subtract(num1, num2) {
-    let difference = num1 - num2;
-    console.log(difference);
-    return difference;
+    return num1 - num2;
 }
 
 function multiply(num1, num2) {
-    let product = num1 * num2;
-    console.log(product);
-    return product;
+    return num1 * num2;
 }
 
 function divide(num1, num2) {
@@ -28,10 +26,18 @@ function divide(num1, num2) {
     }
 
     let division = num1 / num2;
-    console.log(division.toFixed(2));
-    return division.toFixed(2);
+
+    if (Number.isInteger(division) === true) {
+        return division;
+    }
+    else {
+        return division.toFixed(2);
+
+    }
 }
 
+
+//Function that calls on specific operation required by user
 function operate(operation, num1, num2) {
 
     let result;
@@ -57,17 +63,21 @@ function operate(operation, num1, num2) {
 
 }
 
+//Function to clear all values
 function clearAll() {
     num1 = 0;
     num2 = 0;
     return;
 }
 
+//Function to clear operands array
 function clearOperands() {
     
     operands.length = 0;
 }
 
+
+//Function to display on calculator screen
 function displayOnScreen() {
 
     
@@ -126,16 +136,12 @@ function displayOnScreen() {
                         clearOperands();
                         displayValue.textContent = 0;
                     }
-
+                    
+                    //Assigning input as null to overcome the error of user pressing operation button multiple times
                     input = null;
 
                 }
                 else {
-
-                    if (input == null) {
-                        alert("Invalid use.");
-                        return;
-                    }
 
                     currentOperation = button.id;
                     operands.push(currentOperation);
@@ -147,21 +153,22 @@ function displayOnScreen() {
                 
                 let result = 0;
 
-                /*if (operands.length === 4) {
-                    operands.length = 2;
-                } */
-
 
                 if (operands.length > 2) {
 
+
+                    //If user entered operations button continuously without numeric input
                     if (operands[2] === null) {
                         for(let i = 0 ; i < 2 ; i++) {
                             operands.pop();
                         }
+
+
                         console.log(operands);
                         return;
                     }
 
+                    //Calculate result after 2 inputs and return it
                     result = operate(operands[1], operands[0], operands[2]);
                     displayValue.innerHTML = result;
 
@@ -187,7 +194,6 @@ function displayOnScreen() {
                 }
 
                 operands.push(input);
-                //operands.push(currentOperation);
                 console.log("ENTERING EQUALS " + operands);
                 let result = 0;
 
@@ -202,21 +208,6 @@ function displayOnScreen() {
                 if (operands.length === 2) {
                     operands.length = 1;
                 }
-
-                /* if (operands.length > 2) {
-
-                    result = operate(currentOperation, operands[0], operands[2]);
-                    displayValue.innerHTML = result;
-
-                    clearOperands();
-
-                    input = result;
-                    operands.unshift(input);
-                    operands.push(currentOperation);
-                    console.log("OPERANDS IN EQUALS IF" + operands);
-                    return;
-
-                } */
 
                 console.log("AFTER EXITING EQUALS IF " + operands);
 
